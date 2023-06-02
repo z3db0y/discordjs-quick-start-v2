@@ -5,7 +5,7 @@ export interface Config {
 export interface Command {
     name: string;
     description: string;
-    options?: import('discord.js').CommandInteractionOption[];
+    options?: import('discord.js').APIApplicationCommandOption[];
     metadata?: {
         guildOnly?: boolean;
         ownerOnly?: boolean;
