@@ -72,7 +72,10 @@ client.on('interactionCreate', async interaction => {
             });
         }
     } else if(interaction.isButton()) {
-        let button = buttons.get(interaction.customId);
+        let buttonInfo: any; 
+        try { buttonInfo = JSON.parse(interaction.customId); } catch {}
+
+        let button = buttons.get(buttonInfo ? buttonInfo.action : interaction.customId);
         if(!button) return;
         if(button.metadata) {
             if(button.metadata.authorOnly && (interaction.user.id !== interaction.message.author.id || !interaction.message)) {
@@ -83,7 +86,8 @@ client.on('interactionCreate', async interaction => {
         }
 
         try {
-            button.execute(interaction);
+            if(buttonInfo) button.execute(interaction, buttonInfo.metadata);
+            else button.execute(interaction);
         } catch(e) {
             console.error(`Failed to execute button`, button.name.red);
             console.error(e);

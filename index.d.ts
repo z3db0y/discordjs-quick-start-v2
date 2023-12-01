@@ -19,5 +19,5 @@ export interface Button {
     metadata?: {
         authorOnly?: boolean;
     };
-    execute: (interaction: import('discord.js').ButtonInteraction) => void;
+    execute: (interaction: import('discord.js').ButtonInteraction, metadata?: any) => void;
 }
