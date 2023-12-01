@@ -28,8 +28,8 @@ client.on('ready', async () => {
 
 client.login(config.token);
 
-let commands = new Map<string, Command>();
-let buttons = new Map<string, Button>();
+export let commands = new Map<string, Command>();
+export let buttons = new Map<string, Button>();
 
 client.on('interactionCreate', async interaction => {
     if(interaction.isChatInputCommand()) {
